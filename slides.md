@@ -140,9 +140,10 @@ d) SE attestation (where supported)
 ---
 layout: two-cols
 layoutClass: gap-16
+title: a) On-card key generation + certificate from a trusted CA
 ---
 
-# a) On-card Key Generation + Certificate from a Trusted CA
+### a) On-card Key Generation + Certificate from a Trusted CA
 
 ```mermaid
 sequenceDiagram
@@ -202,21 +203,21 @@ sequenceDiagram
 
 <div class="text-sm">
 
-### What we can assert:
+#### What we can assert:
 
 - The key pair was generated on the SE (not injected).
 - The trusted party (our CA) vouches for it via the certificate.
 
-### How we verify:
+#### How we verify:
 
 - Validate the certificate chain to our trusted CA.
 - Check certificate policy OIDs/constraints that encode “on-card generation” and applet identity/version.
 
-### Pros:
+#### Pros:
 
 Strong, portable proof anchored in our CA. Private key stays in hardware.
 
-### Cons:
+#### Cons:
 
 Requires applet support for CSR and our PKI/CA process.
 

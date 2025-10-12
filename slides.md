@@ -213,12 +213,12 @@ sequenceDiagram
 - Validate the certificate chain to our trusted CA.
 - Check certificate policy OIDs/constraints that encode “on-card generation” and applet identity/version.
 
-#### Pros:
 
+#### Pros:
 Strong, portable proof anchored in our CA. Private key stays in hardware.
 
-#### Cons:
 
+#### Cons:
 Requires applet support for CSR and our PKI/CA process.
 
 </div>

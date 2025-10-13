@@ -145,7 +145,7 @@ title: a) On-card key generation + certificate from a trusted CA
 
 ### a) On-card Key Generation + Certificate from a Trusted CA
 
-```mermaid {scale: 1.1}
+```mermaid
 sequenceDiagram
     autonumber
     participant TSM as TSM / Service Provider

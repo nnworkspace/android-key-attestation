@@ -67,7 +67,7 @@ This presentation is a practical breakdown for Android-based devices, distinguis
 ---
 layout: image-right
 layoutClass: gap-16
-image: /images/android_key_attestation.jpg
+image: /images/android_key_attestation.png
 ---
 
 <div class="text-sm">

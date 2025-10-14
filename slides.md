@@ -312,10 +312,32 @@ sequenceDiagram
 ---
 layout: two-cols
 layoutClass: gap-16
-title: c) GlobalPlatform Delegated Management and DAP signatures (sequence diagram)
+title: c) GlobalPlatform Delegated Management and DAP signatures - 1
 ---
 
-#### c) GlobalPlatform Delegated Management and DAP signatures
+#### c) GlobalPlatform Delegated Management and DAP signatures - 1
+
+<div class="text-sm">
+
+
+##### What we can assert:
+
+- The key was securely provisioned or generated on the SE by an authorized trusted party (e.g. a TSM or HSM).
+- The provenance of who created or injected the key, and the integrity of the operation, is verified using DAP signatures.
+
+##### How we verify:
+
+1. Validation of DAP signatures:
+   - DAP signatures are cryptographic signatures applied to the data package by the trusted entity responsible for provisioning or generating the key.
+   - Using the public key of the trusted entity (e.g.TSM), we verify the DAP signature to ensure the data package (key or applet) was not tampered with and came from the claimed trusted source.
+    
+2. GlobalPlatform's Delegated Management Protocol:
+  - The SE’s security mechanisms enforce the use of DAP signatures for key provisioning or generation.
+  - Only trusted entities with the correct DAP signing keys can execute operations on the SE.
+
+</div>
+
+::right::
 
 ```mermaid
 sequenceDiagram
@@ -381,24 +403,12 @@ sequenceDiagram
   end
 ```
 
-::right::
+---
+title: c) GlobalPlatform Delegated Management and DAP signatures - 2
+--- 
 
-<div class="text-xs">
+### c) GlobalPlatform Delegated Management and DAP signatures - 2
 
-
-##### What we can assert:
-
-- The key was securely provisioned or generated on the SE by an authorized trusted party (e.g. a TSM or HSM).
-- The provenance of who created or injected the key, and the integrity of the operation, is verified using DAP signatures.
-
-##### How we verify:
-
-1. Validation of DAP signatures:
-   - DAP signatures are cryptographic signatures applied to the data package by the trusted entity responsible for provisioning or generating the key.
-   - Using the public key of the trusted entity (e.g.TSM), we verify the DAP signature to ensure the data package (key or applet) was not tampered with and came from the claimed trusted source.
-2. GlobalPlatform's Delegated Management Protocol:
-  - The SE’s security mechanisms enforce the use of DAP signatures for key provisioning or generation.
-  - Only trusted entities with the correct DAP signing keys can execute operations on the SE.
 
 ##### Pros:
 
@@ -411,10 +421,6 @@ sequenceDiagram
 - **Complexity:** Requires GlobalPlatform Delegated Management infrastructure and support on the SE.
 - **Limited portability:** The DAP signature is specific to the provisioning process and does not provide a portable certificate like pattern (a) for external validation.
 - **Trust delegation risk:** The trust is anchored to the TSM’s keys and infrastructure, so if the TSM is compromised, the system’s integrity is at risk.
-
-
-</div>
-
 
 ---
 ---

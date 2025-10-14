@@ -383,7 +383,7 @@ sequenceDiagram
 
 ::right::
 
-<div class="text-sm">
+<div class="text-xs">
 
 
 ##### What we can assert:

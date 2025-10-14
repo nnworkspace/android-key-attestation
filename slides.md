@@ -447,11 +447,11 @@ layoutClass: gap-16
 title: d) SE attestation (where supported) - 1
 ---
 
-### d) SE attestation (where supported) - 1
+#### d) SE attestation (where supported) - 1
 
 **Secure Element (SE) attestation** is a mechanism where the SE generates an attestation certificate or signature that proves the authenticity and integrity of the SE and the key generation process. This approach relies on hardware-backed attestation.
 
-#### What we can assert:
+##### What we can assert:
 
 - The key was generated inside a specific SE.
   
@@ -525,12 +525,10 @@ layout: two-cols-header
 layoutClass: gap-16
 title: d) SE attestation (where supported) - 2
 --- 
-#### d) SE attestation (where supported) - 2
-
+### d) SE attestation (where supported) - 2
 ::left::
-
-##### How we verity:
-
+#### How we verity:
+<div class="text-sm">
 **1. Attestation Certificate Chain:**
 - The SE generates an attestation certificate (or signature) signed by a trusted entity, such as the SE manufacturer or a Root of Trust (RoT).
 
@@ -545,33 +543,26 @@ title: d) SE attestation (where supported) - 2
 **3. Policy Checks:**
 
 - Verify that the SE’s firmware version, applet version, and attestation attributes meet our security requirements.
-  
+</div>  
 ::right::
-         
-##### Pros:
+
+#### Pros:
+<div class="text-sm">
 - **Strong hardware-backed proof:** Provides strong assurance that the key was generated on a genuine SE and never left the secure hardware.
 
 - **No reliance on external provisioning:** Unlike patterns a) and b), the key generation process is self-contained within the SE.
 
 - **Portable attestation proof:** The attestation certificate can be used externally to prove the key’s origin.
+</div>
 
 ##### Cons:
+<div class="text-sm">
 - **Dependency on SE manufacturer:** Requires support for attestation from the SE vendor, and trust is rooted in the SE manufacturer’s RoT.
 
 - **SE firmware/app support:** Not all SEs support attestation, and support may vary between vendors.
   
 - **Complex verification process:** Verifying attestation certificates and attributes may require specialized tools and infrastructure.
-
----
----
-
-# d) SE attestation (where supported)
-
-- Some SE vendors/applet stacks support attestation of keys (similar in spirit to Android Key Attestation, but not standardized across all eSEs).
-
-- If available, we can obtain an attestation statement signed by an SE vendor/issuer root that claims “this key was generated inside this SE/applet.”
-
-- Verify the attestation chain to a root we trust.
+</div>
 
 ---
 layout: two-cols

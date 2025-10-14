@@ -442,6 +442,127 @@ title: c) GlobalPlatform Delegated Management and DAP signatures - 3
 - **Trust delegation risk:** The trust is anchored to the TSM’s keys and infrastructure, so if the TSM is compromised, the system’s integrity is at risk.
 
 ---
+layout: two-cols
+layoutClass: gap-16
+title: d) SE attestation (where supported) - 1
+---
+
+#### d) SE attestation (where supported) - 1
+
+**Secure Element (SE) attestation** is a mechanism where the SE generates an attestation certificate or signature that proves the authenticity and integrity of the SE and the key generation process. This approach relies on hardware-backed attestation.
+
+##### What we can assert:
+
+- The key was generated inside a specific SE.
+  
+- The SE itself is authentic and has not been tampered with, as proven by the attestation.
+
+- The SE is running a specific applet or firmware version that has been verified.
+
+::right::
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant TSM as TSM / Service Provider
+  participant SE as Secure Element (SE)<br/>Security Domain
+  participant Applet as Applet (on SE)
+  participant Attester as Attestation Authority<br/>(SE Manufacturer / Root of Trust)
+  participant RP as Relying Party
+
+  %% -- 1. Secure Channel & On-card Key Generation with Attestation --
+  rect rgb(239, 246, 255)
+    TSM->>SE: Open GP Secure Channel (SCP03/11)
+    activate SE
+    note over TSM, SE: Only a party with existing SCP keys can do this.
+    SE-->>TSM: Secure Channel established
+    deactivate SE
+
+    TSM->>Applet: Request on-card key generation with attestation
+    activate Applet
+    Applet->>Applet: Generate key pair<br> (non-exportable)
+    note over Applet: Private key is created and bound to<br> the SE/app security domain.
+
+    Applet->>SE: Produce key attestation evidence<br/>(includes pubkey, applet ID/version, SE identity/state)
+    SE-->>TSM: Return public key + attestation blob
+    deactivate Applet
+  end
+
+  %% -- 2. Attestation Chain Retrieval & Preparation --
+  rect rgb(240, 253, 244)
+    TSM->>SE: Retrieve attestation certificate chain<br/>(SE/attestation key certs)
+    activate SE
+    SE-->>TSM: Attestation cert chain<br> (signed by manufacturer)
+    deactivate SE
+
+    note over TSM, Attester: The attestation chain anchors in the SE manufacturer’s Root of Trust.
+    TSM->>TSM: Store/associate<br> attestation evidence<br/>with the key (optional)
+  end
+
+  %% -- 3. Later Validation by a Relying Party (Challenge-based Attestation) --
+  rect rgb(254, 252, 232)
+    note over RP: Happens later, during an operation
+    RP->>Applet: Send nonce challenge & request proof<br/>(signature + attestation)
+    activate Applet
+    Applet-->>RP: Provide signed data with the key<br/>+ attestation blob + attestation cert chain
+    deactivate Applet
+
+    RP->>Attester: Validate attestation cert chain<br/>to manufacturer Root of Trust
+    activate Attester
+    Attester-->>RP: Confirmation: chain is valid
+    deactivate Attester
+
+    RP->>RP: Verify attestation signature(s) over blob
+    RP->>RP: Check attributes: on-card generation,<br/>non-exportable, applet ID/version, SE security state
+    RP->>RP: Validate nonce freshness/binding to request
+
+    RP->>RP: Trust in the key’s origin is established:<br/>key was generated inside a genuine SE and never left it
+  end
+```
+
+---
+layout: two-cols-header
+layoutClass: gap-16
+title: d) SE attestation (where supported) - 2
+--- 
+#### d) SE attestation (where supported) - 2
+
+::left::
+
+##### How we verity:
+
+**1. Attestation Certificate Chain:**
+- The SE generates an attestation certificate (or signature) signed by a trusted entity, such as the SE manufacturer or a Root of Trust (RoT).
+
+- The attestation certificate includes information about the SE, such as its hardware ID, applet version, and possibly the key properties.
+
+**2. Validation of Attestation Signature:**
+
+- Using the public key of the trusted entity (e.g., SE manufacturer’s RoT), we verify the attestation signature to ensure it is valid and that the SE is genuine.
+
+- Confirm that the attestation includes attributes indicating the key was generated inside the SE and has not been exported.
+
+**3. Policy Checks:**
+
+- Verify that the SE’s firmware version, applet version, and attestation attributes meet our security requirements.
+  
+::right::
+         
+##### Pros:
+- **Strong hardware-backed proof:** Provides strong assurance that the key was generated on a genuine SE and never left the secure hardware.
+
+- **No reliance on external provisioning:** Unlike patterns a) and b), the key generation process is self-contained within the SE.
+
+- **Portable attestation proof:** The attestation certificate can be used externally to prove the key’s origin.
+
+##### Cons:
+- **Dependency on SE manufacturer:** Requires support for attestation from the SE vendor, and trust is rooted in the SE manufacturer’s RoT.
+
+- **SE firmware/app support:** Not all SEs support attestation, and support may vary between vendors.
+  
+- **Complex verification process:** Verifying attestation certificates and attributes may require specialized tools and infrastructure.
+
+---
 ---
 
 # d) SE attestation (where supported)

@@ -447,11 +447,11 @@ layoutClass: gap-16
 title: d) SE attestation (where supported) - 1
 ---
 
-#### d) SE attestation (where supported) - 1
+### d) SE attestation (where supported) - 1
 
 **Secure Element (SE) attestation** is a mechanism where the SE generates an attestation certificate or signature that proves the authenticity and integrity of the SE and the key generation process. This approach relies on hardware-backed attestation.
 
-##### What we can assert:
+#### What we can assert:
 
 - The key was generated inside a specific SE.
   

@@ -321,6 +321,7 @@ GlobalPlatform (GP) Delegated Management is a protocol that allows the secure pr
 ##### What we can assert:
 
 - The key was securely provisioned or generated on the SE by an authorized trusted party (e.g. a TSM or HSM).
+  
 - The provenance of who created or injected the key, and the integrity of the operation, is verified using DAP signatures.
 
 ::right::

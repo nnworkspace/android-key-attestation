@@ -310,12 +310,10 @@ sequenceDiagram
 ```
 
 ---
-layout: two-cols
-layoutClass: gap-16
 title: c) GlobalPlatform Delegated Management and DAP signatures (sequence diagram)
 ---
 
-### c) GlobalPlatform Delegated Management and DAP signatures (provenance of who did what)
+### c) GlobalPlatform Delegated Management and DAP signatures (sequence diagram)
 
 ```mermaid
 sequenceDiagram
@@ -323,14 +321,14 @@ sequenceDiagram
   participant TSM as TSM / Service Provider
   participant SE as Secure Element (SE)<br/>Security Domain (ISD)
   participant Applet as Applet (on SE)
-  participant Issuer as Card Issuer / GP Trust Anchor
+  participant Issuer as Card Issuer /<br> GP Trust Anchor
   participant RP as Relying Party
 
   %% -- 1. Delegated Management Authorization & Secure Channel --
   rect rgb(239, 246, 255)
     TSM->>Issuer: Request Delegated Management authorization<br/>(operation, applet/key identifiers, policy)
     activate Issuer
-    Issuer->>Issuer: Validate TSM identity & requested operation
+    Issuer->>Issuer: Validate TSM identity<br> & requested operation
     Issuer-->>TSM: Return DAP authorization material<br/>(policy + DAP signature over operation data)
     deactivate Issuer
 

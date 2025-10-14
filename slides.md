@@ -521,15 +521,16 @@ sequenceDiagram
 ```
 
 ---
-layout: two-cols-header
+layout: two-cols
 layoutClass: gap-16
 title: d) SE attestation (where supported) - 2
 --- 
-### d) SE attestation (where supported) - 2
-::left::
-#### How we verity:
+#### d) SE attestation (where supported) - 2
+
 <div class="text-xs">
-  
+
+##### How we verity:  
+
 **1. Attestation Certificate Chain:**
 - The SE generates an attestation certificate (or signature) signed by a trusted entity, such as the SE manufacturer or a Root of Trust (RoT).
 - The attestation certificate includes information about the SE, such as its hardware ID, applet version, and possibly the key properties.
@@ -541,6 +542,7 @@ title: d) SE attestation (where supported) - 2
 **3. Policy Checks:**
 - Verify that the SE’s firmware version, applet version, and attestation attributes meet our security requirements.
 </div>  
+
 ::right::
 
 #### Pros:

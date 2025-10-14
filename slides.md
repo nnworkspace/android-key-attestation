@@ -318,7 +318,6 @@ title: c) GlobalPlatform Delegated Management and DAP signatures (sequence diagr
 ### c) GlobalPlatform Delegated Management and DAP signatures (provenance of who did what)
 
 ```mermaid
-```mermaid
 sequenceDiagram
   autonumber
   participant TSM as TSM / Service Provider

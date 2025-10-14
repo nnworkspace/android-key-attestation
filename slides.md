@@ -529,9 +529,9 @@ title: d) SE attestation (where supported) - 2
 ::left::
 #### How we verity:
 <div class="text-sm">
+  
 **1. Attestation Certificate Chain:**
 - The SE generates an attestation certificate (or signature) signed by a trusted entity, such as the SE manufacturer or a Root of Trust (RoT).
-
 - The attestation certificate includes information about the SE, such as its hardware ID, applet version, and possibly the key properties.
 
 **2. Validation of Attestation Signature:**
@@ -548,20 +548,20 @@ title: d) SE attestation (where supported) - 2
 
 #### Pros:
 <div class="text-sm">
+  
 - **Strong hardware-backed proof:** Provides strong assurance that the key was generated on a genuine SE and never left the secure hardware.
-
 - **No reliance on external provisioning:** Unlike patterns a) and b), the key generation process is self-contained within the SE.
-
 - **Portable attestation proof:** The attestation certificate can be used externally to prove the key’s origin.
+
 </div>
 
 ##### Cons:
 <div class="text-sm">
-- **Dependency on SE manufacturer:** Requires support for attestation from the SE vendor, and trust is rooted in the SE manufacturer’s RoT.
-
-- **SE firmware/app support:** Not all SEs support attestation, and support may vary between vendors.
   
+- **Dependency on SE manufacturer:** Requires support for attestation from the SE vendor, and trust is rooted in the SE manufacturer’s RoT.
+- **SE firmware/app support:** Not all SEs support attestation, and support may vary between vendors.
 - **Complex verification process:** Verifying attestation certificates and attributes may require specialized tools and infrastructure.
+
 </div>
 
 ---

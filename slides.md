@@ -549,7 +549,9 @@ title: d) SE attestation (where supported) - 2
 <div class="text-xs">
   
 - **Strong hardware-backed proof:** Provides strong assurance that the key was generated on a genuine SE and never left the secure hardware.
+
 - **No reliance on external provisioning:** Unlike patterns a) and b), the key generation process is self-contained within the SE.
+
 - **Portable attestation proof:** The attestation certificate can be used externally to prove the key’s origin.
 
 </div>
@@ -558,7 +560,9 @@ title: d) SE attestation (where supported) - 2
 <div class="text-xs">
   
 - **Dependency on SE manufacturer:** Requires support for attestation from the SE vendor, and trust is rooted in the SE manufacturer’s RoT.
+
 - **SE firmware/app support:** Not all SEs support attestation, and support may vary between vendors.
+
 - **Complex verification process:** Verifying attestation certificates and attributes may require specialized tools and infrastructure.
 
 </div>

@@ -310,6 +310,79 @@ sequenceDiagram
 ```
 
 ---
+layout: two-cols
+layoutClass: gap-16
+title: c) GlobalPlatform Delegated Management and DAP signatures (sequence diagram)
+---
+
+### c) GlobalPlatform Delegated Management and DAP signatures (provenance of who did what)
+
+```mermaid
+```mermaid
+sequenceDiagram
+  autonumber
+  participant TSM as TSM / Service Provider
+  participant SE as Secure Element (SE)<br/>Security Domain (ISD)
+  participant Applet as Applet (on SE)
+  participant Issuer as Card Issuer / GP Trust Anchor
+  participant RP as Relying Party
+
+  %% -- 1. Delegated Management Authorization & Secure Channel --
+  rect rgb(239, 246, 255)
+    TSM->>Issuer: Request Delegated Management authorization<br/>(operation, applet/key identifiers, policy)
+    activate Issuer
+    Issuer->>Issuer: Validate TSM identity & requested operation
+    Issuer-->>TSM: Return DAP authorization material<br/>(policy + DAP signature over operation data)
+    deactivate Issuer
+
+    TSM->>SE: Open GP Secure Channel (SCP03/11)
+    activate SE
+    note over TSM, SE: Only a party with pre-shared SCP keys can establish this channel.
+    SE-->>TSM: Secure Channel established
+    deactivate SE
+  end
+
+  %% -- 2. Perform Delegated Operation on SE with DAP --
+  rect rgb(240, 253, 244)
+    TSM->>SE: Submit Load/Install/Key operation<br/>including DAP-signed authorization block
+    activate SE
+    SE->>SE: Verify DAP signature using Issuer's DAP public key
+    note over SE, Issuer: DAP proves the Issuer authorized this specific operation on this SE.
+    SE->>Applet: Execute requested operation per policy
+    activate Applet
+    Applet->>Applet: Generate key pair OR unwrap injected key
+    note over Applet: Private key remains inside the SE / security domain.
+    Applet-->>SE: Operation completed
+    deactivate Applet
+    SE-->>TSM: Return Delegated Management Receipt<br/>(ISD-signed proof of performed operation)
+    deactivate SE
+  end
+
+  %% -- 3. Later Validation by a Relying Party (Provenance) --
+  rect rgb(254, 252, 232)
+    note over RP: Happens later, during a transaction/operation
+    RP->>Applet: Request proof of key (e.g., signature)
+    activate Applet
+    Applet-->>RP: Provide signed data
+    deactivate Applet
+
+    RP->>TSM: Request provenance evidence
+    activate TSM
+    TSM-->>RP: Provide DAP authorization block + ISD receipt
+    deactivate TSM
+
+    RP->>Issuer: Obtain/verify Issuer DAP public key<br/>and ISD verification key (trust anchor)
+    activate Issuer
+    Issuer-->>RP: Trust anchors confirmed
+    deactivate Issuer
+
+    RP->>RP: Verify DAP signature on authorization block
+    RP->>RP: Verify ISD signature on Delegated Management Receipt
+    RP->>RP: Trust established: key was created/provisioned<br/>under authorized Delegated Management on this SE
+  end
+```
+
+---
 ---
 
 # c) GlobalPlatform Delegated Management and DAP signatures (provenance of who did what)

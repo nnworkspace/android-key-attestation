@@ -318,9 +318,10 @@ title: c) GlobalPlatform Delegated Management and DAP signatures - 1
 
 #### c) GlobalPlatform Delegated Management and DAP signatures - 1
 
+::left::
+
 <div class="text-xs">
 
-::left::
 
 GlobalPlatform (GP) Delegated Management is a protocol that allows the secure provisioning and management of keys and applications on a Secure Element (SE). The Data Authentication Pattern (DAP) is a mechanism used by GlobalPlatform to provide proof of the origin and integrity of the operations performed on the SE.
 

@@ -316,7 +316,7 @@ title: c) GlobalPlatform Delegated Management and DAP signatures - 1
 ---
 
 #### c) GlobalPlatform Delegated Management and DAP signatures - 1
-GlobalPlatform (GP) Delegated Management is a protocol that allows the secure provisioning and management of keys and applications on a Secure Element (SE). The Data Authentication Pattern (DAP) is a mechanism used by GlobalPlatform to provide proof of the origin and integrity of the operations performed on the SE.
+**GlobalPlatform (GP) Delegated Management** is a protocol that allows the secure provisioning and management of keys and applications on a Secure Element (SE). The **Data Authentication Pattern (DAP)** is a mechanism used by GlobalPlatform to provide proof of the origin and integrity of the operations performed on the SE.
 
 ##### What we can assert:
 
@@ -399,7 +399,7 @@ title: c) GlobalPlatform Delegated Management and DAP signatures - 2
 
 ::left::
 
-**1. Validation of DAP signatures:**
+##### 1. Validation of DAP signatures:
    
    - DAP signatures are cryptographic signatures applied to the data package by the trusted entity responsible for provisioning or generating the key.
      
@@ -407,7 +407,7 @@ title: c) GlobalPlatform Delegated Management and DAP signatures - 2
   
 ::right::
          
-**2. GlobalPlatform's Delegated Management Protocol:**
+##### 2. GlobalPlatform's Delegated Management Protocol:
    
    - The SE’s security mechanisms enforce the use of DAP signatures for key provisioning or generation.
      

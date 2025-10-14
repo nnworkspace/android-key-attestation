@@ -317,7 +317,7 @@ title: c) GlobalPlatform Delegated Management and DAP signatures - 1
 
 #### c) GlobalPlatform Delegated Management and DAP signatures - 1
 
-<div class="text-sm">
+<div class="text-xs">
 
 
 ##### What we can assert:
@@ -328,10 +328,11 @@ title: c) GlobalPlatform Delegated Management and DAP signatures - 1
 ##### How we verify:
 
 1. Validation of DAP signatures:
+   
    - DAP signatures are cryptographic signatures applied to the data package by the trusted entity responsible for provisioning or generating the key.
-   - Using the public key of the trusted entity (e.g.TSM), we verify the DAP signature to ensure the data package (key or applet) was not tampered with and came from the claimed trusted source.
-    
+   - Using the public key of the trusted entity (e.g.TSM), we verify the DAP signature to ensure the data package (key or applet) was not tampered with and came from the claimed trusted source.    
 2. GlobalPlatform's Delegated Management Protocol:
+   
   - The SE’s security mechanisms enforce the use of DAP signatures for key provisioning or generation.
   - Only trusted entities with the correct DAP signing keys can execute operations on the SE.
 
